@@ -18,6 +18,12 @@
     $pdo = new PDO($dsn, $dbUser, $dbPass);
 
     /**
+     * We gaan de $_POST-array waarden schoonmaken
+     */
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+
+    /**
      * Maak een insert-query om de ingevulde gegevens in de database 
      * op te slaan
      */
