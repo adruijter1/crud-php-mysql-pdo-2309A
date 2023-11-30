@@ -1,15 +1,26 @@
 <?php
-    var_dump($_POST);
+    // var_dump($_POST);
     
     include('config/config.php');
 
-    // Gebruik dubbele quotes om de connectiestring
+    /**
+     * Gebruik dubbele quotes om de connectiestring, 
+     * gebruik kleine letters voor host en dbname!
+     */
     $dsn = "mysql:host=$dbHost;
-            dbName=$dbName;
+            dbname=$dbName;
             charset=UTF8";
 
+    /**
+     * Maak een nieuw PDO object waarmee je verbinding maakt met de 
+     * MySQL-server en de database
+     */
     $pdo = new PDO($dsn, $dbUser, $dbPass);
 
+    /**
+     * Maak een insert-query om de ingevulde gegevens in de database 
+     * op te slaan
+     */
     $sql = "INSERT INTO Persoon (Voornaam
                                 ,Tussenvoegsel
                                 ,Achternaam
@@ -18,8 +29,6 @@
                                 ,'" . $_POST['infix'] . "'
                                 ,'" . $_POST['lastname']. "'
                                 ,'" . $_POST['password']. "')";
-
-    echo $sql;
 
     /**
      * Prepareer de query
