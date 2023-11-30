@@ -31,15 +31,24 @@
                                 ,Tussenvoegsel
                                 ,Achternaam
                                 ,Wachtwoord)
-            VALUES              ('" . $_POST['firstname'] . "'
-                                ,'" . $_POST['infix'] . "'
-                                ,'" . $_POST['lastname']. "'
-                                ,'" . $_POST['password']. "')";
+            VALUES              (:firstname
+                                ,:infix
+                                ,:lastname
+                                ,:password)";
 
     /**
      * Prepareer de query
      */
     $statement = $pdo->prepare($sql);
+
+    /**
+     * Verbind aan de placeholders de $_POST-waarden met de method
+     * bindValue()
+     */
+    $statement->bindValue(':firstname', $_POST['firstname'], PDO::PARAM_STR);
+    $statement->bindValue(':infix', $_POST['infix'], PDO::PARAM_STR);
+    $statement->bindValue(':lastname', $_POST['lastname'], PDO::PARAM_STR);
+    $statement->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
 
     /**
      * Voer de query uit in de database
@@ -50,5 +59,11 @@
      * Geef feedback aan de gebruiker
      */
     echo "De gegevens zijn opgeslagen in de database";
+
+    /**
+     * Met een header() functie kun je automatisch naar een andere pagina
+     * navigeren
+     */
+    header('Refresh:3.5; url=index.php');
 
     
