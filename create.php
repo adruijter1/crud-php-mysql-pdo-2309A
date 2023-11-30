@@ -26,4 +26,14 @@
      */
     $statement = $pdo->prepare($sql);
 
+    /**
+     * Voer de query uit in de database
+     */
+    $statement->execute();
+
+    /**
+     * Geef feedback aan de gebruiker
+     */
+    echo "De gegevens zijn opgeslagen in de database";
+
     
