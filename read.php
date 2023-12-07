@@ -27,3 +27,49 @@ $sql = "SELECT Voornaam
               ,Wachtwoord
         FROM  Persoon
         ORDER BY Achternaam ASC";
+
+/**
+ * Met de method (functie in de klasse PDO) prepare maak je de 
+ * query klaar om uitgevoerd te worden
+ */
+$statement = $pdo->prepare($sql);
+
+/**
+ * Voer nu de geprepareerde sql-query uit op de database
+ */
+$statement->execute();
+
+/**
+ * Haal de geselecteerde records binnen als objecten in een array
+ * en stop deze in een variabele $result
+ */
+$result = $statement->fetchAll(PDO::FETCH_OBJ);
+
+var_dump($result);
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Weergave personen</title>
+</head>
+<body>
+    
+    <table>
+        <thead>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Wachtwoord</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+</body>
+</html>
