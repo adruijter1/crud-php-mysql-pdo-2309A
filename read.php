@@ -46,7 +46,20 @@ $statement->execute();
 $result = $statement->fetchAll(PDO::FETCH_OBJ);
 
 var_dump($result);
+/**
+ * Maak een variabele aan waarin de rijen komen voor de tabel beneden
+ */
+$tableRows = "";
 
+/**
+ * We doorlopen het $result array met een foreach-loop
+ */
+foreach ($result as $persoonObject) {
+    $tableRows .= "<tr>
+                        <td>$persoonObject->Voornaam</td>
+                        <td>$persoonObject->Tussenvoegsel</td>
+                   </tr>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -58,8 +71,7 @@ var_dump($result);
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <title>Weergave personen</title>
 </head>
-<body>
-    
+<body>    
     <table>
         <thead>
             <th>Voornaam</th>
@@ -68,8 +80,8 @@ var_dump($result);
             <th>Wachtwoord</th>
         </thead>
         <tbody>
+            <?php echo $tableRows; ?>
         </tbody>
     </table>
-
 </body>
 </html>
