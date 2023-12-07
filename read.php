@@ -45,7 +45,7 @@ $statement->execute();
  */
 $result = $statement->fetchAll(PDO::FETCH_OBJ);
 
-var_dump($result);
+// var_dump($result);
 /**
  * Maak een variabele aan waarin de rijen komen voor de tabel beneden
  */
@@ -58,6 +58,8 @@ foreach ($result as $persoonObject) {
     $tableRows .= "<tr>
                         <td>$persoonObject->Voornaam</td>
                         <td>$persoonObject->Tussenvoegsel</td>
+                        <td>$persoonObject->Achternaam</td>
+                        <td>$persoonObject->Wachtwoord</td>
                    </tr>";
 }
 ?>
