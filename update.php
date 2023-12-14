@@ -18,6 +18,15 @@
      */
     $pdo = new PDO($dsn, $dbUser, $dbPass);
 
+
+    /**
+     * Check of er op de submitknop is gedrukt van het formulier
+     */
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        var_dump($_POST);
+        exit();
+    }
+
     /**
      * We maken een query die het record met het meegegeven Id opvraagt
      * uit de database
@@ -56,3 +65,37 @@
     echo $_GET['id'];
 ?>
 <a href="read.php">terug</a>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>CRUD</title>
+</head>
+<body>
+    <h3>Persoonsgegevens Wijzigen</h3>
+
+    <form method="post" action="update.php">
+        <label for="firstname">Voornaam: </label>
+        <input type="text" name="firstname" id="firstname" value="<?php echo $result->Voornaam; ?>"><br><br>
+
+        <label for="infix">Tussenvoegsel: </label>
+        <input type="text" name="infix" id="infix" value="<?php echo $result->Tussenvoegsel; ?>"><br><br>
+
+        <label for="lastname">Achternaam: </label>
+        <input type="text" name="lastname" id="lastname" value="<?php echo $result->Achternaam; ?>"><br><br>
+
+        <label for="password">Wachtwoord: </label>
+        <input type="password" name="password" id="password" value="<?php echo $result->Wachtwoord; ?>"><br><br>
+
+        <input type="hidden" name="id" value="<?php echo $result->Id; ?>">
+
+        <input type="submit" value="Verzend">
+    </form>
+
+    
+</body>
+</html>
