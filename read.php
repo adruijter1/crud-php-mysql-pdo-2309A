@@ -21,7 +21,8 @@ $pdo = new PDO($dsn, $dbUser, $dbPass);
  * Maak een SELECT-query die alle gegevens uit de tabel Persoon haalt.
  * Sorteer met ORDER BY aflopend(DESC) of oplopend ASC
  */
-$sql = "SELECT Voornaam
+$sql = "SELECT Id
+              ,Voornaam
               ,Tussenvoegsel
               ,Achternaam
               ,Wachtwoord
@@ -60,9 +61,15 @@ foreach ($result as $persoonObject) {
                         <td>$persoonObject->Tussenvoegsel</td>
                         <td>$persoonObject->Achternaam</td>
                         <td>$persoonObject->Wachtwoord</td>
+                        <td>
+                            <a href='update.php?id=$persoonObject->Id'>
+                                <img src='img/edit.png' alt='potlood'>
+                            </a>
+                        </td>
                    </tr>";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,17 +80,20 @@ foreach ($result as $persoonObject) {
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <title>Weergave personen</title>
 </head>
-<body>    
+<body>
+    <h3>Persoonsgegevens</h3>    
     <table>
         <thead>
             <th>Voornaam</th>
             <th>Tussenvoegsel</th>
             <th>Achternaam</th>
             <th>Wachtwoord</th>
+            <th>Wijzigen</th>
         </thead>
         <tbody>
             <?php echo $tableRows; ?>
         </tbody>
     </table>
+    <a href="index.php">Invoegen persoonsgegevens</a>
 </body>
 </html>

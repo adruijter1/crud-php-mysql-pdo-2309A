@@ -62,8 +62,8 @@
 
     /**
      * Met een header() functie kun je automatisch naar een andere pagina
-     * navigeren
+     * navigeren met PHP
      */
-    header('Refresh:3.5; url=index.php');
+    header('Refresh:0.5; url=read.php');
 
     
