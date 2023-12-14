@@ -23,7 +23,32 @@
      * Check of er op de submitknop is gedrukt van het formulier
      */
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+
         var_dump($_POST);
+        /**
+         * We maken een updatequery om de gegevens te kunnen wijzigen in de database
+         */
+        $sql = "UPDATE Persoon
+                SET    Voornaam = :voornaam
+                      ,Tussenvoegsel = :tussenvoegsel
+                      ,Achternaam = :achternaam
+                      ,Wachtwoord = :wachtwoord
+                WHERE Id = :id";
+
+        /**
+         * We gaan de query geschikt maken voor het PDO-object
+         */
+        $statement = $pdo->prepare($sql);
+
+        /**
+         * We koppelen de $_POST-waarden aan de placeholders in de query
+         */
+        $statement->bindValue(':voornaam', $_POST['firstname'], PDO::PARAM_STR);
+        $statement->bindValue(':tussenvoegsel', $_POST['infix'], PDO::PARAM_STR);
+        $statement->bindValue(':achternaam', $_POST['lastname'], PDO::PARAM_STR);
+        $statement->bindValue(':wachtwoord', $_POST['password'], PDO::PARAM_STR);
+        
         exit();
     }
 
