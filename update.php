@@ -24,8 +24,6 @@
      */
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-
-        var_dump($_POST);
         /**
          * We maken een updatequery om de gegevens te kunnen wijzigen in de database
          */
@@ -101,9 +99,6 @@
      */
     $result = $statement->fetch(PDO::FETCH_OBJ);
 
-    var_dump($result);
-
-    echo $_GET['id'];
 ?>
 <a href="read.php">terug</a>
 
