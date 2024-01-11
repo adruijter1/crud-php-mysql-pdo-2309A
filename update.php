@@ -48,6 +48,22 @@
         $statement->bindValue(':tussenvoegsel', $_POST['infix'], PDO::PARAM_STR);
         $statement->bindValue(':achternaam', $_POST['lastname'], PDO::PARAM_STR);
         $statement->bindValue(':wachtwoord', $_POST['password'], PDO::PARAM_STR);
+        $statement->bindValue(':id', $_POST['id'], PDO::PARAM_STR);
+
+        /**
+         * Voer de query uit op de database
+         */
+        $statement->execute();
+
+        /**
+         * Geef een terugkoppelingsmelding aan de gebruiker
+         */
+        echo "Het updaten is gelukt";
+
+        /**
+         * Stuur door naar de pagina read.php
+         */
+        header('Refresh: 2.5; url=read.php');
         
         exit();
     }
